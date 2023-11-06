@@ -1,0 +1,282 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta charset="UTF-8">
+    <title>Piattaforma di gestione intelligente dellenergia</title>
+    
+
+
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/DateUtil_vs%3D20231102134814.js"></script>
+
+
+    <script type="text/javascript" src="js/i18n/common_it_IT_vs%3D20231102134814.js"></script>
+
+<script>
+    var ctx = '/screen';
+    var sysLangNumSplit = 'it_IT'.toLowerCase();
+    var operateSysUrl = 'https://zvuWJ2aGEY8I.eu/login.jsp' ;
+    var sign = 'cloud';
+    // 温度单位（显示）全局变量
+    var temperatureUnit = '℃';
+    // 用户自定义设置的辐射量基本单位
+    var irrationUnit = 'Wh/m²';
+</script>
+    <!-- css引用--->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="screen_5.0/css/basic.css">
+    <link rel="stylesheet" type="text/css" href="screen_5.0/css/style_vs%3D20231102134814.css">
+    <style type="text/css">
+        .labels {
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+             width: auto;
+            white-space: nowrap;
+            color:white;
+            margin-top:12px !important;
+            margin-left:-3px !important;
+        }
+
+        .imageTitle{
+            width: 326px !important;
+            height: 60px !important;
+            padding-top: 8px !important;
+        }
+        .systemImageTitle {
+            text-align: center;
+        }
+
+        #module_content3 {
+            width : calc(100% - 50px) !important;
+        }
+
+    </style>
+    </head>
+<body>
+<div class="fakeloader" id="loadding">
+    <div class="fl spinner3">
+        <img src="images/loadding.gif">
+        <div style="color:white;font-size: 16px">Caricamento.......</div>
+        <div class="dot1"></div><div class="dot2"></div>
+    </div>
+</div>
+<div class="alertInfo" role="alert" align="center">Richiesta di dati non riuscita, riprovare più tardi</div>
+<canvas id="canvas" width="1893" height="1080" style="    position: absolute;left: 0px;top: 0px;z-index: -1;"></canvas>
+<div class="topBar">
+    <div class="logoLeft" ondblclick="S5.setUserModules()">
+        <img id="pageLogImg" src="screen_5.0/images/logoLeft_logo.png">
+    </div>
+
+    <div class="systemTitle systemImageTitle">
+        <span id="pageTitle"></span>
+    </div>
+    <div class="timeRight" style="position:relative;">
+        <div class="noBreak" style="padding-left: 133px;padding-top: 10px;height:55px;">
+            <span class="sysTime" id="sysTime"></span>
+            
+            <div class="sysdate safe_days" style="display: none;">Funzionamento sicuro&nbsp;
+                <span id="safe_run_days">--</span>&nbsp;Giorno</div>
+            <!--切换语言暂时写死，只对snec2017账户使用-->
+        </div>
+        <div class="timeRight-btnlist clearfix">
+            <span class="tabAutoBtn" style="display: none" onclick="startShow()" id="autoPlay" code="1" title="Apri dimostrazione su display">Apri</span>
+            <span class="tabAutoBtn changeLangSpan" style="display: none" onclick="changeLanguage('zh_CN')" title="点击切换中文">zh</span>
+            <span class="tabAutoBtn changeLangSpan" style="display: none" onclick="changeLanguage('en_US')" title="Switch language to English">en</span>
+            <span class="config-btn" id="config" style="display:none" onclick="openConfigWindow()" title="配置">配置</span>
+            <span class="exit" onclick="backToLogin()" title="Esci dal sistema">Esci</span>
+        </div>
+      </div>
+</div>
+<div class="mainContent">
+    <div class="leftData">
+        <div class="totalEle">
+            <span class="totalPower">
+                
+                <span>Produzione odierna</span>
+                
+            </span>
+            <span class="numds" id="kpiTotayEenergy">--</span><label id="kpiTodayEenergyUnit" class="kpiTodayEenergyUnit" style="color: white"></label>
+            <span class="totalPower" style="height:40px;margin-top: -11px;display:flex;align-items: center;justify-content: center;">
+                
+                <span>E totale</span>&nbsp;<label id="kpiTotalEenergy">--</label>
+            </span>
+        </div>
+        <div class="todayEle leftDataDiv" id="skin_body_module_1" style="position:relative">
+
+        </div>
+        <div class="energyS leftDataDiv" id="skin_body_module_3" style="position:relative">
+
+        </div>
+        <div class="powerP leftDataDiv" id="skin_body_module_5" style="position:relative">
+        </div>
+    </div>
+    <div class="middleData  center_map">
+        <div class="left_marquee_rectangle"></div>
+        <div class="right_marquee_rectangle"></div>
+        <div class="maskRound">
+            <div class="eyeL" id="eyeL"></div>
+            <div class="eyeR"></div>
+        </div>
+        
+        <div class="map_search map-another">
+            <input type="text" name="stationSearchName" id="stationSearchName" placeholder="Immettere nome impianto">
+            <ul id="map_searchListBox" class="map_searchListBox" style="display: none;">
+                <li></li>
+            </ul>
+        </div>
+        <ul class="map_legends map-another">
+
+            <li><span class="text title" style="width:86px" title="Solare">Solare</span></li>
+            <li><span class="text title" style="width:84px" title="Vento">Vento</span></li>
+            <li><span class="text title" style="width:140px" title="Accumulo di energia">Accumulo di energia</span></li>
+
+        </ul>
+        
+        <div class="dataMap" id="main_map"></div>
+    </div>
+
+    <div class="rightData">
+        <div class="rtopPic">
+            <div class="defautCate">
+                <span><img src="screen_5.0/images/imgs/night.png" style="width:34px;"></span>
+                <span id="tab_0" index="0">Solare</span>
+            </div>
+            <div class="moreCate" style="display: none">
+                <span id="tab_1" onclick="autoPlayFn(null,this)" index="1"> Vento</span>
+                <span id="tab_2" onclick="autoPlayFn(null,this)" index="2"> Accumulo di energia</span>
+            </div>
+            
+        </div>
+        <div class="electric rightDataDiv" id="skin_body_module_2" style="position:relative">
+
+        </div>
+        <div class="rightLine line01"></div>
+        <div class="powerSta rightDataDiv" id="skin_body_module_4" style="position:relative;">
+
+        </div>
+        <div class="rightLine line02"></div>
+        <div class="powerPlan rightDataDiv" id="skin_body_module_6" style="position:relative">
+
+        </div>
+    </div>
+</div>
+<div class="marqueeBar" id="marquee_content_div">
+    
+</div>
+<iframe id="detailFrame" style="display: none; position: absolute; width: 100%; height: 1080px; overflow: hidden; border: 0px; z-index: 9999; top: 0px;left:0px;" src="">
+</iframe>
+<script type="text/javascript">
+    $('.timeRight').hover(function () {
+        $('.timeRight-btnlist').stop().animate({right: "10px"});
+    }, function () {
+        $('.timeRight-btnlist').stop().animate({right: "-500px"});
+    });
+
+    $('.map_search').hover(function () {
+        $('.center_map .map_search').stop().animate({
+            top: "-100px",
+            opacity: 1
+        });
+    }, function () {
+        $('.center_map .map_search').stop().animate({
+            top: "-252px",
+            opacity: 0
+        });
+    });
+        /*$('.timeRight').hover(function(){
+            $('.sysTime').animate({marginLeft:"0px"});
+            $('.sysTime').animate({marginLeft:"-100px"});
+            $('.tabAutoBtn').animate({opacity:1});
+            $('.exit').css('display','inline-block');
+            $('.exit').animate({opacity:1});
+
+        },function(){
+            $('.sysTime').animate({marginLeft:"50px"});
+            $('.tabAutoBtn').animate({opacity:0});
+            $('.exit').css({'opacity':0,'display':'none'});
+        })*/
+
+</script>
+<div class="shadow_div" style="display: none">
+</div>
+<div class="screen_module_content" style="display: none">
+    <div class="text_div top_title">Modulo di configurazione</div>
+    <ul id="sortable">
+    </ul>
+    <div class="text_div dividing_div">
+        I primi 6 moduli vengono visualizzati sul grande schermo in ordine, con il modulo opzionale sottostante
+    </div>
+    <ul id="sortable1">
+    </ul>
+    <div class="text_div bottom_box">
+        <button onclick="S5.screen_module_content()">Conferma</button>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="S5.setUserModules()">Reimposta</button>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="S5.close_user_mods()">Cancella</button>
+    </div>
+</div>
+
+
+<script src="js/gmap/markerclusterer.js"></script>
+
+
+
+    
+        
+        
+    
+    
+        
+    
+
+
+        <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&amp;key=49d4eb1856637f99c2504d18fd34e1ba"></script>
+
+
+<script>
+    $("#loadding").show();
+    var onlyShowSolarFlag = true; //仅展示光伏电站flag
+    var language = 'it_IT';
+    var mapType = '';
+    var bathPath = '/screen';
+    var user_key = '26971';
+</script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="css/layer/layer.js"></script>
+<script type="text/javascript" src="js/common/esmpbase.js"></script>
+<script type="text/javascript" src="js/common/common_vs%3D20231102134814.js"></script>
+<script type="text/javascript" src="js/common/screen_util_vs%3D20231102134814.js"></script>
+<script type="text/javascript" src="js/plugin/marquee/jquery.marquee_vs%3D20231102134814.js"></script>
+<script type="text/javascript" src="js/plugin/echarts_new/echarts.min_vs%3D20231102134814.js"></script>
+<script src="js/plugin/amd/require.js"></script>
+<script src="screen_5.0/js/screen_5.0.common_vs%3D120231102134814.js"></script>
+<script type="text/javascript">
+    //snec2017 风、储能 发电模拟数据
+    // 临时要求不显示配置文件以及模拟数据 20191206
+    if (user_key == 22100) {
+    //     S5.windPsTodayGen = 153600; //风能电站今日发电量(度)
+    //     S5.windPsTotalGen = 32703000; //风能电站累计发电量(度)
+    //     // snec2019 特殊处理，针对 snec2017账号
+    //     $('#config').show()
+	
+	$('#logoLeft').hide()
+	
+    }
+    var vs = '20231102134814';
+    initLogo();
+    // if (mapType == 2) {//google map
+    //     loadScriptAndCallback(bathPath + "/screen_5.0/js/screen_5.0.gmap.js?vs="+vs);
+    // }else {//高德地图
+    //     //$(".changeLangSpan").remove();
+    //     loadScriptAndCallback(bathPath + "/screen_5.0/js/screen_5.0.amap.js?vs="+vs);
+    // }
+    loadScriptAndCallback(bathPath + "/screen_5.0/js/screen_5.0.amap.js?vs="+vs);
+
+    function openConfigWindow() {
+        var url = bathPath + "/screen_5.0/modules/dialog/dialog_dashboradConfig.jsp";
+
+        $("#detailFrame").attr("src", url);
+        $("#detailFrame").slideToggle();
+        $(".shadow_div").slideToggle();
+    }
+</script>
+<script src="screen_5.0/js/html5_start.js"></script>
+</body></html>
