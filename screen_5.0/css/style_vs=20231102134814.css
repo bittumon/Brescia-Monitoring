@@ -1,0 +1,1399 @@
+@font-face {
+    font-family: 'NUMDS';
+    src: url('../font/DS-DIGI.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hsan';
+    src: url('../font/SourceHanSansCN-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    width: 1920px;
+    height: 1080px;
+}
+
+body {
+    /*overflow-y:hidden;*/
+    overflow-x: hidden;
+    background: url("../images/bg.jpg") top left no-repeat;
+    background-size: contain;
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    height: 1080px;
+    width: 1920px;
+    background-color: #050D19;
+}
+
+.mainContent {
+    height: 922px;
+    overflow: Hidden;
+}
+
+span {
+    color: #fff;
+}
+
+.topBar {
+    height: 85px;
+    /*margin-top:10px;*/
+}
+
+.topBar > div {
+    height: 85px;
+    width: 20%;
+    line-height: 40px;
+}
+
+.topBar > div.systemTitle {
+    width: 60%;
+}
+
+.topBar > div {
+    float: left;
+}
+
+.logoLeft {
+    background: url("../images/logoLeft.png") left top no-repeat;
+}
+
+.logoLeft img{
+    max-width: 300px;
+    max-height: 40px;
+    margin-top: 16px;
+    margin-left: 50px;
+}
+
+.systemTitle {
+    background: url("../images/topCenterBg.png") center top no-repeat;
+}
+
+.systemTitle span {
+    color: #fff;
+    text-align: center;
+    line-height: 72px;
+    display: block;
+    letter-spacing: 1px;
+    font-size: 34px;
+    letter-spacing: 1px;
+    font-family: 'Hsan';
+}
+
+.timeRight {
+    background: url("../images/timeBg.png") right top no-repeat;
+    z-index: 99999;
+}
+
+.tabAutoBtn, .exit, .config-btn {
+    border: 1px solid #00f3ff;
+    padding: 2px 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: all .5s;
+    z-index: 999;
+}
+
+.exit, .config-btn {
+    height: 18px;
+    line-height: 18px;
+    padding: 2px 10px;
+}
+
+.exit{
+    float: right;
+    margin-right: 35px;
+    border: 1px solid #f45551;
+}
+
+.config-btn {
+    border: 1px solid #00e9f2;
+}
+.config-btn:hover {
+    cursor: pointer;
+    background: #00f3ff;
+}
+
+.tabAutoBtn:hover, .exit:hover {
+    cursor: pointer;
+    background: #00f3ff;
+    color: #050d18;
+}
+
+.exit:hover {
+    background: #f45551;
+    color: #fff;
+}
+
+span.sysTime {
+    color: #fff;
+    text-align: center;
+    display: block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: left;
+}
+
+.iMarquee {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.iMarquee ul li {
+    display: inline-block;
+    margin-left: 100px;
+    line-height: 72px;
+}
+
+.leftData {
+    width: 20%;
+    float: left;
+    position: relative; /*-------------修改 添加POSITION----------------*/
+    z-index: 1001; /*-------------修改 添加Z-INDEX----------------*/
+    padding-left:20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.totalEle {
+    background: url("../images/totalEle.png") top right no-repeat;
+    height: 134px;
+    line-height: 104px;
+    text-align: center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+
+}
+
+.totalEle span.numds {
+    color: #00f3ff;
+    font-size: 70px;
+    /*margin-left: 25px;*/
+    font-family: 'NUMDS';
+}
+
+.totalPower {
+    display: block;
+    line-height: 18px;
+    font-size: 16px;
+}
+
+.totalPower span {
+    color: #52bdf0;
+    /*margin-left: 40px;*/
+}
+
+.leftDataDiv:not(:last-child) {
+    width: 105%;
+    /*width: 96%;*/
+    /*float: right;*/
+    /*margin-top: 30px;*/
+    border-bottom: 1px solid #00e9f2;
+    /*margin-right: -6%;*/
+}
+
+.energyS.leftDataDiv {
+    width: 114%;
+    margin-right: -11%;
+}
+
+.leftDataDiv>span, .rightDataDiv>span {
+    /*height: 24px;*/
+    min-width: 5px;
+    display: inline-block;
+    color: #56c5fa;
+    /*font-size:16px;*/
+    /*margin-left: 15px; !*-------------修改 添加MARGIN LEFT---------------*!*/
+    margin:20px 0 10px;
+    font-weight: bold;
+}
+
+.dataTable {
+    height: 198px;
+    padding-bottom: 5px;
+    /*border:2px solid #00e9f2;*/
+}
+.dataTable #module_content2,.dataTable#module_content2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.dataTable.save-energy{
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+.dataTable #module_content2{
+    height: 180px;
+}
+.dataTable #module_content2 .dataDiagram,.dataTable#module_content2 .dataDiagram{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+.rightData .dataTable{
+    width:100%;
+    height:204px;
+}
+
+/*装机容量*/
+/*.dataTable{*/
+/*border-bottom:2px solid #00e9f2;*/
+/*}*/
+.powerPlan .dataTable {
+    /*height: 210px;*/
+}
+
+/*-------------修改 添加.energyS .dataTable start----------------*/
+.energyS .dataTable {
+    height: 182px;
+    width: 100%;
+}
+
+.powerSta .dataTable {
+    height: 187px;
+    /*width: 325px;*/
+    /*float: right;*/
+    /*width:114%;*/
+    /*margin-left:-14%;*/
+    /*padding-left:calc(10% + 0px);!*为让LINE紧贴右弧形,框架DIV左偏移11%,内容区域右偏移11%;*!*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+/*-------------修改 添加.energyS .dataTable  end----------------*/
+
+.leftDataDiv:last-child .dataTable {
+    border-bottom: 0px;
+}
+
+.rightDataDiv:last-child .dataTable {
+    border-bottom: 0px;
+}
+
+.rightData {
+    float: right;
+    width: 19.3%;
+    position: relative; /*-------------修改 添加POSITION----------------*/
+    z-index: 1000; /*-------------修改 添加Z-INDEX----------------*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-right: 20px;
+}
+
+.rtopPic {
+    background: url("../images/topPic.png") top left no-repeat;
+    height: 161px;
+    /*width: 90%;*/
+    background-size: 100% 100%;
+}
+
+.rightDataDiv {
+    width: 100%;
+    float: left;
+    /*margin-top: 30px;*/
+    /*border-bottom:1px solid #00e9f2;*/
+}
+
+/*------------------*/
+.leftDataDiv .dataTable.firstTable {
+    /*border-bottom: 1px solid #00e9f2;*/
+    height: 231px; /*------------------------------新加样式STYLE height:246px;------------------------------*/
+}
+
+.rightDataDiv .dataTable.firstTable {
+    border-bottom: 1px solid #00e9f2;
+    height: 239px; /*------------------------------新加样式STYLE height:244px;------------------------------*/
+    width: 110%;
+    margin-left: -10%;
+}
+
+/*div.electric.rightDataDiv {*/
+    /*margin-top: -10px;*/
+/*}*/
+
+.middleData {
+    width: 60%;
+    overflow: hidden;
+    float: left;
+}
+
+.maskRound {
+    position: absolute;
+    z-index: 999;
+    width: 1154px; /*--------------------修改1 1260改为1152----------------------*/
+    pointer-events: none;
+}
+
+.maskRound .eyeL {
+    background: url("../images/eyeLeft.png") left center no-repeat;
+    height: 940px;
+    width: calc(50% + 10px); /*-------------修改 补充10PX的左移位----------------*/
+    float: left;
+    pointer-events: none;
+    background-size: 100% 100%;
+    margin-left: -10px; /*-------------修改 添加MARGIN-LEFT----------------*/
+}
+
+.maskRound .eyeR {
+    background: url("../images/eyeRight.png") right center no-repeat;
+    height: 940px;
+    width: calc(50% + 16px); /*-------------修改 补充16PX的右移位----------------*/
+    float: right;
+    pointer-events: none;
+    background-size: 100% 100%;
+    margin-right: -16px; /*-------------修改 添加MARGIN RIGHT----------------*/
+}
+
+.left_marquee_rectangle {
+    height: 939px;
+    width: 300px;
+    z-index: 1000;
+    position: absolute;
+    shape-outside: polygon(0 0, 290px 0,152px 122px, 78px 249px, 40px 552px, 126px 800px, 290px 100%, 0 100%);
+    clip-path: polygon(0 0, 290px 0, 152px 122px, 78px 249px, 40px 552px, 126px 800px, 290px 100%, 0 100%);
+    /*background-color: red;*/
+    /*opacity: 0.5;*/
+}
+
+.right_marquee_rectangle {
+    left: 1250px;
+    height: 939px;
+    width: 300px;
+    z-index: 1000;
+    position: absolute;
+    shape-outside: polygon(0 0, 100% 0, 100% 100%, 0 100%, 174px 800px, 260px 552px, 222px 249px, 148px 122px);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 174px 800px, 260px 552px, 222px 249px, 148px 122px);
+}
+
+.dataMap {
+    width: 1154px; /*--------------------修改2 1260改为1152----------------------*/
+    height: 940px;
+    position: absolute;
+    z-index: 1;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -o-border-radius: 100px;
+}
+
+.marqueeBar {
+    width: calc(100% - 30px);
+    position: relative;
+    bottom: 0;
+    height: 72px;
+    float: left;
+    margin-left: 15px;
+    border-top: 1px solid #01bae0;
+    z-index: 1002;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.marqueeBar > div {
+    height: 70px;
+    line-height: 72px;
+}
+
+.marqueeBar div {
+    float: left;
+    height: 72px;
+    line-height: 72px;
+}
+
+.marqueeBar div.button {
+    border: 1px solid #00d5ff;
+    border-radius: 16px;
+    height: 32px;
+    padding: 0 25px;
+    letter-spacing: 1px;
+    margin-top: 18px; /*------------------修改  MARGINTOP-----------------------*/
+    color: #fff;
+    line-height: 32px;
+    text-align: center;
+}
+
+.marqueeBar span.arrowB {
+    display: block;
+    background: url(../images/arrowB.png) center left no-repeat;
+    width: 7px;
+    height: 72px;
+    float: left;
+    margin: auto 15px;
+}
+
+.marqueeBar span.name {
+    color: #01b7db;
+    margin: auto 5px;
+    margin-left: 25px;
+}
+
+.marqueeBar span.name img {
+    margin-top: 16px;
+}
+
+.marqueeBar span.num, .marqueeBar label.unit {
+    color: #fff;
+    margin: auto 5px;
+}
+
+.dataCon {
+    /*margin-top:20px;*/
+}
+
+/*新添加样式2017/3/22*/
+/*--------------------NEW 左侧中间  节能减排STYLE START----------------------*/
+.er {
+    margin-left: 0px;
+}
+
+.leftM {
+    /*width: 30%;*/
+    /*float: left;*/
+    /*text-align: center;*/
+    /*margin-top: 10px;*/
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    letter-spacing: 1px;
+    justify-content: flex-start;
+    /*margin-right: 20px;*/
+}
+
+.leftM span {
+    /*font-size: 14px;*/
+    /*color: #fff;*/
+    /*margin: 10px auto;*/
+    /*margin-bottom: 2px;*/
+    /*display: block;*/
+}
+
+.leftM div label {
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.er label {
+    color: #cfb668;
+}
+
+.bi label {
+    color: #00d5ff;
+}
+
+.tre label {
+    color: #12d52d;
+}
+
+/*--------------------NEW 左侧中间  节能减排STYLE END----------------------*/
+
+/*--------------------NEW 右上  光伏/储能/风能STYLE START----------------------*/
+
+.defautCate {
+    text-align: center;
+    padding-top: 42px;
+    letter-spacing: 1px;
+}
+
+.defautCate span img {
+    /*margin-top: 13px;*/
+}
+
+.defautCate span:last-child {
+    /*line-height: 62px;*/
+}
+
+.defautCate span{
+    display: block;
+}
+
+.moreCate {
+    width: 64%;
+    margin: 0 auto;
+    margin-top: -7px;
+    display: block;
+    padding-left: 10px;
+    overflow: hidden;
+}
+
+.moreCate span {
+    background: #02041d;
+    display: inline-block;
+    width: 50%;
+    float: left;
+    text-align: center;
+    border: 1px solid #01f9f9;
+    box-sizing: border-box;
+    height: 36px;
+    line-height: 34px;
+    /*letter-spacing: 1px;*/
+    transition: all 1s;
+    padding: 0 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size:14px;
+}
+
+.moreCate img {
+    width: 26px;
+}
+
+.moreCate span:hover {
+    background: #3e8bd8;
+    color: #86ffff;
+}
+
+.moreCate span:first-child {
+    border-bottom-left-radius: 25px;
+    -webkit-border-bottom-left-radius: 25px;
+}
+
+.moreCate span:last-child {
+    border-bottom-right-radius: 25px;
+    -webkit-border-bottom-right-radius: 25px;
+}
+
+/*--------------------NEW 右上  光伏/储能/风能STYLE END----------------------*/
+
+/*--------------------NEW 当月发电趋势小标题STYLE START----------------------*/
+.rightDataDiv .dataDetail {
+    font-size: 12px;
+    letter-spacing: 1px;
+    float: right;
+    color: #fff;
+    margin: 0;
+}
+
+.rightDataDiv .dataDetail label {
+    font-size: 18px;
+    color: #dedc03;
+    margin: 0 2px;
+}
+/*--------------------NEW 当月发电趋势小标题STYLE END----------------------*/
+
+#sortable {
+    list-style-type: none;
+    margin: 0;
+    margin-left: 2px;
+    padding: 0;
+    width: 496px;
+    padding: 0;
+    width: 500px;
+    height: 288px;
+    text-align: left;
+    border: 1px #00E5FC solid;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#sortable1 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 92%;
+    height: 192px;
+    text-align: center;
+    max-height: 258px;
+    overflow-y: auto;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px #00E5FC solid;
+}
+
+#sortable li {
+    margin-left: 3px;
+    margin-top: 3px;
+    font-size: 14px;
+    height: 88px;
+    width: 243px;
+    display: inline-block;
+    border-radius: 5px;
+    font-family: "Microsoft YaHei";
+    font-size: 16px;
+}
+
+#sortable1 li {
+    margin-left: 3px;
+    margin-top: 3px;
+    font-size: 14px;
+    height: 88px;
+    width: 143px;
+    display: inline-block;
+    border-radius: 5px;
+    font-family: "Microsoft YaHei";
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#sortable li span {
+    position: absolute;
+}
+
+.screen_module {
+    background-color: #ffffff;
+    border: 1px solid yellow;
+}
+
+.shadow_div {
+    position: absolute;
+    min-height: 1080px;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0px;
+}
+
+.screen_module_content {
+    width: 522px;
+    height: 598px;
+    position: absolute;
+    left: 40%;
+    top: 20%;
+    background-color: rgba(4, 45, 88, 0.78);
+    text-align: center;
+    z-index: 9999;
+    border-radius: 5px;
+}
+
+.screen_module_content .top_title {
+    height: 30px;
+    text-align: center;
+}
+
+.screen_module_content .bottom_box {
+    height: 30px;
+    text-align: center;
+}
+
+.text_div {
+    padding-top: 3px;
+    color: #ffffff;
+}
+
+.bottom_box {
+    padding-top: 6px;
+}
+
+.bottom_box button {
+    width: 88px;
+    height: 28px;
+    border-radius: 6px;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/*装机容量*/
+.containerValue {
+    background: url(../images/imgs/containerBg.png) center left no-repeat;
+    height: 30px;
+    color: #e1e012;
+    font-size: 16px;
+    padding: 30px 0;
+    line-height: 32px;
+    /* padding-left: 30px; */
+    text-align: center;
+    padding-right: 56%;
+    background-position-x: 10px;
+}
+
+.containerValue label {
+    color: #fff;
+}
+
+.mapDiagram,.windDiagram {
+    width: 36%;
+    float: left;
+}
+.dataDiagram{
+    width: 56%;
+    padding-left: 8%;
+    float: left;
+}
+
+.mapDiagram {
+    background: url('../images/imgs/mapDiagram.png') center no-repeat;
+    height: 104px;
+}
+
+.windDiagram {
+    background: url('../images/imgs/windDiagram.png') center no-repeat;
+    height: 104px;
+}
+.wind-item{
+    color: #ffffff;
+    text-align: left;
+}
+
+.dataDiagram {
+    font-size: 13px;
+    color: #fff;
+    /*line-height: 30px;*/
+}
+
+.dataDiagram label {
+    color: #e1e012;
+    font-size: 16px;
+    margin: 0 5px;
+    display: block;
+}
+.dataDiagram label span{
+    color: #fff;
+    font-size: 13px;
+}
+
+/*.marginTop60 {*/
+    /*margin-top: 60px;*/
+/*}*/
+
+.kpiTodayEenergyUnit {
+    position: absolute;
+    margin-left: 20px;
+    line-height: 130px;
+}
+
+.fontSize14 {
+    display: inline-block !important;
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+.rightLine {
+    height: 1px;
+    width: calc(100% + 32px);
+    background: #00e9f2;
+    position: relative;
+    float: left;
+    margin-left: -30px;
+}
+
+.rightLine.line02 {
+    width: calc(100% + 62px);
+    margin-left: -60px;
+}
+
+.mapDiagram.marginTop50 {
+    /*margin-top: 60px;*/
+}
+
+.dataDiagram.marginTop50 {
+    /*margin-top: 60px;*/
+}
+
+#tab_1，#tab_2 {
+    cursor: pointer;
+}
+
+/**左上角动画**/
+@-webkit-keyframes scan {
+0 {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+}
+.lightScan {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top: 104px;
+    left: 111px;
+    animation: scan 20s linear infinite;
+    -webkit-animation: scan 20s linear infinite;
+    background-image: url("../images/lightPng.png");
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+/**节能减排图标**/
+.leftM>div{
+    width: 50%;
+}
+.leftM>div:first-child{
+    display: flex;
+    align-items: center;
+}
+.leftM>div:last-child,energys-num{
+    height: 62px;
+    display: flex;
+    align-items: center;
+}
+.energys-num{
+    width:calc(100% - 62px);
+    height: 62px;
+    display: flex;
+    align-items: center;
+    font-size:14px;
+}
+.erImg,.meiImg,.treeImg{
+    width:62px;
+    height: 62px;
+
+}
+.erImg {
+    background: url("../images/er.png");
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.meiImg {
+    background-image: url("../images/bi.png");
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.treeImg {
+    background-image: url("../images/tre.png");
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+
+
+
+.tipWrap{
+    border-radius: 5px;
+    background: rgba(1, 41, 77, 0.7);
+    border: 1px solid #3ca2d6;
+    width: 170px;
+    display: inline-block;
+    height: auto;
+    font-family: "微软雅黑";
+    position: relative;
+    left: 88px;
+    top: -30px;
+}
+.tipContent{
+    margin: 0 auto;
+    height: calc(100% - 30px);
+    /* margin-top: 10px; */
+    /* border: 1px solid rgba(0,0,0,.75); */
+    width: calc(100% - 10px);
+    padding: 5px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    font-size: 14px;
+}
+
+.tipContent span{
+    padding : 5px;
+    color: #f5ee29;
+}
+.tipArrow{
+    display: none;
+    position:absolute;
+    top:-16px;
+    left:25%;
+}
+.tipContent span{
+    display:block;
+}
+.wxTitle{
+    overflow: hidden;
+    background: #1E4D78;
+    border: none;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #666;
+    -webkit-shape-outside: polygon(15px 0, 45px 100%, 100% 50%, 45px 100%, 15px 100%, 0 50%);
+    -webkit-clip-path: polygon(15px 0, 45px 0, 100% 50%, 45px 100%, 15px 100%, 0 50%);
+    -webkit-shape-margin: 20px;
+    shape-outside: polygon(15px 0, 45px 100%, 100% 50%, 45px 100%, 15px 100%, 0 50%);
+    clip-path: polygon(15px 0, 45px 0, 100% 50%, 45px 100%, 15px 100%, 0 50%);
+    shape-margin: 20px;
+    margin-left:-7px;
+}
+#screen_lay{
+    position: absolute;
+    bottom: 0;
+    background: #3B72CD;
+    color: #fff;
+    display: block;
+    width: 50px;
+}
+.amap-toolbar .amap-pancontrol{
+    background: url(../images/map_view.png) -2px -140px;
+}
+.amap-zoom-cursor, .amap-zoom-label-city, .amap-zoom-label-country, .amap-zoom-label-province, .amap-zoom-label-street, .amap-zoom-minus, .amap-zoom-plus {
+    background-image: url(../images/map_view.png);
+}
+.amap-zoomcontrol {
+    width: 20px;
+    background-color: rgba(7, 49, 86, 0.8);
+}
+.amap-zoom-mask, .amap-zoom-ruler {
+    background-image:url(../images/toolbar_rbg.png);
+}
+
+.amap-zoomcontrol{
+    width:24px;
+}
+.amap-zoomcontrol{
+    margin-left:-1px;
+}
+.amap-locate{
+    margin-left:-1px;
+}
+
+/*------------------------------------------------------------------------------*/
+.center_map .map-another {
+    top: -34px;
+    border-color: transparent;
+    border-width: 100px 0 0 0;
+    border-style: solid;
+}
+
+.center_map .map_legends {
+    width: 500px;
+    height: 34px;
+    position: absolute;
+    right: 450px;
+    top:0px;
+    z-index: 1003;
+    opacity:0;
+    -webkit-transition:all 1s;
+}
+.center_map .map_legends:hover{
+    top:100px;
+    opacity:1;
+    /*cursor:pointer;*/
+}
+
+.center_map ul.map_legends li {
+    float: left;
+    position: relative;
+    width: 60px;
+    margin: 0 2px;
+    padding: 0 0 0 40px;
+    color: #fff;
+    font-size: 15px;
+    line-height: 32px;
+    letter-spacing:2px;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: url(../images/iconGf.png) 5px no-repeat rgba(4, 45, 88, 0.78);
+    background-size: 25%;
+}
+.center_map ul.map_legends li:first-child{
+    background: url(../images/imgs/night.png) 5px no-repeat rgba(4, 45, 88, 0.78);
+    background-size:30%;
+}
+.center_map ul.map_legends li:last-child{
+    background: url(../images/imgs/store.png) 5px no-repeat rgba(4, 45, 88, 0.78);
+    background-size:30%;
+}
+
+
+.center_map ul.map_legends li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+/*.center_map ul.map_legends > li:nth-child(1):before {*/
+/*background-image: url(/images/plants/mapPoints/min/map_point_1100.png);*/
+/*}*/
+
+/*.center_map ul.map_legends > li:nth-child(2):before {*/
+/*background-image: url(/images/plants/mapPoints/min/map_point_2100.png);*/
+/*}*/
+
+/*.center_map ul.map_legends > li:nth-child(3):before {*/
+/*background-image: url(/images/plants/mapPoints/min/map_point_X1.png);*/
+/*}*/
+
+.center_map ul.map_legends > li.sel_legend {
+    width: 128px;
+    margin-right: 8px;
+    padding-left: 10px;
+    /*cursor: pointer;*/
+}
+
+.center_map ul.map_legends span.title{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 93px;
+    text-overflow: ellipsis;
+}
+
+.center_map ul.map_legends > li.sel_legend:after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    border-color: transparent transparent #1A91E1 transparent;
+    border-style: solid;
+    border-width: 7px;
+}
+
+.center_map ul.map_legends > li.sel_legend.slide:after {
+    top: 12px;
+    border-color: #1A91E1 transparent transparent transparent;
+}
+
+.center_map ul.map_legends > li.sel_legend ol {
+    margin-left: -14px;
+    overflow: hidden;
+    display: none;
+    position: relative;
+    left: 1px;
+}
+
+.center_map ul.map_legends > li.sel_legend ol > li {
+    width: 98%;
+    clear: both;
+    border-top: none;
+    border-right: none;
+}
+
+.center_map ul.map_legends > li.sel_legend ol > li:before {
+    content: ' ';
+    position: absolute;
+    left: 11px;
+    top: 12px;
+    width: 10px;
+    height: 10px;
+}
+
+.center_map ul.map_legends > li.sel_legend ol > li:nth-child(1) {
+    border-top: 1px solid #1176BA;
+}
+
+.center_map ul.map_legends > li.sel_legend ol > li:last-child {
+    border-bottom: none;
+}
+
+.center_map ul.map_legends > li.sel_legend ol > li:nth-child(1):before {
+    background-color: #00CC00;
+}
+
+.center_map ul.map_legends > li.sel_legend ol > li:nth-child(2):before {
+    background-color: #CCCC00;
+}
+
+.center_map ul.map_legends > li.sel_legend ol > li:nth-child(3):before {
+    background-color: #CCCCCC;
+}
+
+.center_map ul.map_legends > li.sel_legend ol > li:nth-child(4):before {
+    background-color: #00CCB5;
+}
+.center_map .map_search{
+    height: 300px;
+    position: absolute;
+    top: -252px;
+    left: 615px;
+    font-size: 12px;
+    z-index: 100;
+    -webkit-transition:all 1s;
+    opacity:0;
+
+}
+/*.center_map .map_search:hover {*/
+    /*top: 100px;*/
+    /*opacity:1;*/
+    /*cursor:pointer;*/
+/*}*/
+
+
+.center_map .map_search input {
+    margin-top: 200px;
+    border-radius:100px;
+    -webkit-border-radius:100px;
+    height: 32px;
+    width: 200px;
+    line-height: 32px;
+    padding: 2px 10px 2px 32px;
+    color: #fff;
+    font-size: 14px;
+    background: rgba(4, 45, 88, 0.78) ;
+    background-size: 8%;
+    border: 1px solid #1176BA;
+}
+
+.center_map .map_searchListBox {
+    width: 240px;
+    max-height: 278px;
+    overflow: auto;
+    background: rgba(4, 45, 88, 0.78);
+    margin-top: 1px;
+    border-radius:15px;
+    -webkit-border-radius: 15px;
+}
+.center_map .map_searchListBox li{
+    height:36px;
+    line-height: 36px;
+    color:rgba(255,255,255,.75);
+    padding:0 15px;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    border:0;
+    border-bottom:1px solid #1176BA;
+    transition:all 1s;
+    -webkit-transition:all 1s;
+}
+.center_map .map_searchListBox li:hover{
+    background: rgba(4, 45, 88, 1);
+}
+.center_map .map_searchListBox li:last-child{
+    border:0;
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    color: rgb(202, 255, 195);
+    font-size: 20px;
+}
+
+.amap-marker-label {
+    max-width: 148px;
+    position: absolute;
+    font-size: 12px;
+    color: #FEFEFE;
+    background: #0E75DB;
+    /*padding: 5 5px;*/
+    text-align: center;
+    border: 1px solid #0D5194;
+    box-shadow: 2px 2px 2px rgba(35, 35, 35, 0.5);
+    border-radius: 2px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/**高德地图中点击动画css**/
+.wrapperCircle{
+    width:120px;
+    height:120px;
+    position:relative;
+}
+.wrapperCircle div{
+    position:absolute;
+    top:-32px;
+    left:-36px;
+    width: 120px;
+    height: 120px;
+}
+.wrapperCircle div img{
+    display: block;
+}
+@keyframes circle01{
+    from{transform:rotate(0deg);-webkit-ransform:rotate(0deg);}
+    to{transform:rotate(360deg);-webkit-ransform:rotate(360deg);}
+}
+@-webkit-keyframes circle01{
+    from{transform:rotate(0deg);-webkit-ransform:rotate(0deg);}
+    to{transform:rotate(360deg);-webkit-ransform:rotate(360deg);}
+}
+@keyframes circle02{
+    from{transform:rotate(0deg);-webkit-ransform:rotate(0deg);}
+    to{transform:rotate(-360deg);-webkit-ransform:rotate(-360deg);}
+}
+@-webkit-keyframes circle02{
+    from{transform:rotate(0deg);-webkit-ransform:rotate(0deg);}
+    to{transform:rotate(-360deg);-webkit-ransform:rotate(-360deg);}
+}
+.circle01 {
+    background: url("../images/circle01.png") top left no-repeat;
+    animation: circle01 3s ease-in-out infinite;
+}
+.circle02 {
+    background: url("../images/circle02.png") top left no-repeat;
+    animation: circle02 3s ease-in-out infinite;
+}
+.circle03 {
+    background: url("../images/circle03.png") top left no-repeat;
+}
+.windPng {
+    background: url("../images/wind.png") top left no-repeat;
+}
+.lightPng {
+    background: url("../images/light.png") top left no-repeat;
+}
+.storePng {
+    background: url("../images/store.png") top left no-repeat;
+}
+.line {
+    background: url("../images/line.gif") top left no-repeat;
+}
+
+.wrapperCircle div.actionName{
+    top: 50%;
+    margin-top: -66px;
+    margin-left: 30px;
+}
+
+/**高德地图中静态动画**/
+.windR {
+    background: url("../images/windSingle/windR.png") top left no-repeat;
+    width:60px;
+    height:60px
+}
+.windBg {
+    background: url("../images/windSingle/windBg.png") top left no-repeat;
+    width:120px;
+    height:120px
+}
+.lightR {
+    background: url("../images/lightSingle/lightR.png") top left no-repeat;
+    width:32px;
+    height:32px
+}
+.lightBg {
+    background: url("../images/lightSingle/lightBg.png") top left no-repeat;
+    width:46px;
+    height:46px
+}
+
+.windRotate,.lightRotate{width:60px;height:60px;position:relative;}
+.windRotate div,.lightRotate div {position:absolute;top:0;left:0;}
+.windRotate div img,.lightRotate div img{display: block;}
+@-webkit-keyframes rotateA{
+    from{
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes rotateA{
+    from{
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+.rotateA{
+    animation: rotateA 6s linear infinite;
+    -webkit-animation: rotateA 6s linear infinite;
+    z-index: 99;
+}
+.lightRotate div.lightR{
+    left: 12px;
+    top: 3px;
+}
+
+.alertInfo{
+    position: absolute;
+    top:0;width: 100%;
+    display: none;
+    color: white;
+    background-color: #1a4a7d;
+    font-weight: 700;
+    z-index: 999999;
+}
+
+
+.circle_marker{
+    border-radius: 50%;
+    font-size: 12px;
+    border: solid 1px silver;
+    width: 55px;
+    height: 55px;
+    padding: 3px;
+    text-align: center;
+    line-height: 18px;
+    max-width: 50px;
+    color:white;
+}
+
+.rectangle_marker{
+    border-radius: 6px;
+    font-size: 12px;
+    border: solid 1px silver;
+    height: 16px;
+    padding: 3px;
+    text-align: center;
+    line-height: 18px;
+    max-width: 80px;
+    color:white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fakeloader{
+    background:url("../../images/bj5.png");
+    position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999;
+}
+
+.spinner3{
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-20px;
+    margin-top:-2px;
+}
+
+.timeRight-btnlist{
+    position: absolute;
+    right: -500px;
+    top: 0px;
+    background: #042130;
+    height: 40px;
+    padding-top: 20px;
+    width: 300px;
+}
+.sysdate{
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #ffffff;
+}
+.sysdate span{
+    font-family: "微软雅黑";
+    font-size: 16px;
+    color:yellow;
+}
+
+.amap_window_info_ps_list {
+    width: 150px;
+    background: rgba(1, 41, 77, 0.7);
+    border: solid 1px rgb(60, 162, 214);
+    opacity: 0.8;
+    color: yellow;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.amap_window_info_ps_list div{
+    text-overflow: ellipsis;
+    cursor: pointer;
+    white-space: nowrap;
+    width: 97%;
+    margin-bottom: 4px;
+    overflow: hidden;
+}
+
+#tab_0 {
+    cursor: default;
+    margin:6px 0 10px;
+}
